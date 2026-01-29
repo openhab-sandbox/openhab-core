@@ -1109,7 +1109,7 @@ public class YamlModelRepositoryImplTest {
         assertThat(thing.getConfiguration().keySet(),
                 containsInAnyOrder("hostname", "timeZone", "refreshInterval", "refreshNtp", "serverPort"));
         assertEquals("12345", thing.getConfiguration().get("hostname"));
-        assertEquals("12.3", thing.getConfiguration().get("timeZone"));
+        assertEquals(new BigDecimal("12.3"), thing.getConfiguration().get("timeZone"));
 
         assertEquals(2, thing.getChannels().size());
         Iterator<Channel> it = thing.getChannels().iterator();
@@ -1120,7 +1120,7 @@ public class YamlModelRepositoryImplTest {
         channel = it.next();
         assertEquals(new ChannelUID(NTP_THING_UID, "date-only-string"), channel.getUID());
         assertThat(channel.getConfiguration().keySet(), contains("DateTimeFormat"));
-        assertEquals("123.45", channel.getConfiguration().get("DateTimeFormat"));
+        assertEquals(new BigDecimal("123.45"), channel.getConfiguration().get("DateTimeFormat"));
     }
 
     private class NtpThingHandlerFactory implements ThingHandlerFactory {
